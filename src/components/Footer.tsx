@@ -1,3 +1,4 @@
+import CookieSettingsButton from "@/components/CookieSettingsButton";
 import { profile } from "@/data/profile";
 import { footerLinks } from "@/data/site";
 import { HoverLink } from "@/components/ui";
@@ -17,6 +18,7 @@ export default function Footer() {
               {link.label}
             </HoverLink>
           ))}
+          <CookieSettingsButton />
         </div>
       </div>
 

@@ -4,8 +4,9 @@ import { AnimatePresence, animate, motion, useInView, useReducedMotion } from "f
 import { useEffect, useRef, useState } from "react";
 import { profile } from "@/data/profile";
 import Magnetic from "@/components/effects/Magnetic";
+import Marquee from "@/components/effects/Marquee";
 import RainbowSwirl from "@/components/effects/RainbowSwirl";
-import { Button, Container } from "@/components/ui";
+import { Container } from "@/components/ui";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -121,26 +122,61 @@ const cards = [
   },
 ];
 
+const proof = [
+  `${profile.experienceYears} years building production UI`,
+  "React.js · Next.js · TypeScript",
+  "Healthcare · E-commerce · FinTech · EdTech",
+  `Frontend at ${profile.career.company}`,
+];
+
 export default function Hero() {
-  const words = "Frontend Engineering Done Right.".split(" ");
+  const lead = ["Ship", "interfaces"];
+  const tail = ["that", "feel"];
 
   return (
     <section id="home" className="relative overflow-hidden pb-16 pt-32 sm:pb-24 sm:pt-40 4k:pt-52">
       <RainbowSwirl className="pointer-events-none absolute left-1/2 top-[58%] w-[80rem] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-[0.14]" />
 
       <Container size="xl" className="relative text-center">
-        <h1 className="hero-display mx-auto mb-6 max-w-5xl text-[clamp(2.25rem,5.5vw,4.5rem)] sm:mb-8">
-          {words.map((w, i) => (
-            <motion.span
-              key={w}
-              className="mr-[0.25em] inline-block last:mr-0"
-              initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.8, delay: 0.1 + i * 0.08, ease }}
+        <div className="mb-8 opacity-80 sm:mb-10">
+          <Marquee items={proof} speed={36} />
+        </div>
+
+        <h1 className="hero-display mx-auto mb-6 max-w-5xl text-[clamp(3.1rem,8.2vw,7rem)] sm:mb-8">
+          <span className="block">
+            {lead.map((w, i) => (
+              <motion.span
+                key={w}
+                className="mr-[0.22em] inline-block last:mr-0"
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.05 + i * 0.06, ease }}
+              >
+                {w}
+              </motion.span>
+            ))}
+          </span>
+          <span className="mt-[0.08em] block">
+            {tail.map((w, i) => (
+              <motion.span
+                key={w}
+                className="mr-[0.22em] inline-block"
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.18 + i * 0.06, ease }}
+              >
+                {w}
+              </motion.span>
+            ))}
+            <motion.em
+              className="hero-accent inline-block"
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.32, ease }}
             >
-              {w}
-            </motion.span>
-          ))}
+              real.
+            </motion.em>
+          </span>
         </h1>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 0.8 }}>
@@ -163,10 +199,10 @@ export default function Hero() {
           transition={{ delay: 0.95, duration: 0.7, ease }}
           className="mt-8 flex flex-col items-center justify-center gap-5 sm:flex-row sm:gap-8"
         >
-          <Magnetic strength={0.2}>
-            <Button href="#contact" variant="primary">
-              Get In Touch
-            </Button>
+          <Magnetic strength={0.15}>
+            <a href="#contact" className="cw-pill">
+              Start a conversation <span aria-hidden>→</span>
+            </a>
           </Magnetic>
           <a href="#projects" className="cw-link">
             See my work

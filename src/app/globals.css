@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  --background: #0a0a0b;
+  --foreground: #f7f6f2;
   --muted: rgba(255, 255, 255, 0.62);
   --accent: #006eff;
   --accent-light: #4d9aff;
@@ -447,10 +447,182 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hero display typography */
 .hero-display {
-  font-family: var(--font-display), sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  font-family: var(--font-instrument), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+}
+
+.hero-accent {
+  font-style: italic;
+  font-weight: 400;
+  color: #9ec9d4;
+  padding-right: 0.08em;
+}
+
+.cw-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.25rem;
+  min-width: min(100%, 18.5rem);
+  border-radius: 999px;
+  background: #c5e4ee;
+  color: #0a0a0b;
+  padding: 1rem 1.35rem 1rem 1.6rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.35s;
+}
+
+.cw-pill:hover {
+  background: #d7eef5;
+  transform: translateY(-2px);
+}
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  background: #f7f6f2;
+}
+
+.splash span {
+  font-family: var(--font-instrument), Georgia, serif;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  letter-spacing: -0.04em;
+  color: rgba(10, 10, 11, 0.16);
+  animation: splash-in 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.splash-out {
+  animation: splash-out 0.32s ease forwards;
+}
+
+@keyframes splash-in {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes splash-out {
+  to { opacity: 0; visibility: hidden; }
+}
+
+.cookie-banner,
+.cookie-dialog {
+  background: #f7f6f2;
+  color: #0a0a0b;
+  border-radius: 20px;
+}
+
+.cookie-banner {
+  position: fixed;
+  z-index: 70;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem;
+  max-width: 920px;
+  margin-inline: auto;
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+  animation: splash-in 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cookie-banner h2,
+.cookie-dialog h2 {
+  font-family: var(--font-instrument), Georgia, serif;
+  font-size: clamp(1.7rem, 3vw, 2.25rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.cookie-eyebrow {
+  margin-bottom: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cookie-copy {
+  max-width: 36rem;
+  margin-top: 0.55rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: rgba(10, 10, 11, 0.72);
+}
+
+.cookie-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 1.15rem;
+}
+
+.cookie-accept {
+  min-width: 11.5rem;
+  padding: 0.85rem 1.1rem 0.85rem 1.25rem;
+  font-size: 0.95rem;
+}
+
+.cookie-text {
+  font-size: 0.92rem;
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+
+.cookie-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 75;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(10, 10, 11, 0.55);
+}
+
+.cookie-dialog {
+  width: min(100%, 34rem);
+  padding: 1.5rem;
+}
+
+.cookie-dialog h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.cookie-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(10, 10, 11, 0.1);
+}
+
+.cookie-row p {
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+  color: rgba(10, 10, 11, 0.68);
+}
+
+.cookie-lock {
+  flex: none;
+  border-radius: 999px;
+  background: rgba(10, 10, 11, 0.06);
+  padding: 0.3rem 0.6rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
 }
 
 .hero-line-muted {

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { profile } from "@/data/profile";
 import { navLinks } from "@/data/site";
@@ -11,26 +11,17 @@ import { Button, Container, Icon } from "@/components/ui";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const reducedMotion = useReducedMotion();
-  const { scrollY } = useScroll();
-  const backgroundOpacity = useTransform(scrollY, [0, 80], [0, 1]);
-  const borderOpacity = useTransform(scrollY, [0, 80], [0, 0.6]);
-  const backgroundColor = useTransform(
-    backgroundOpacity,
-    (v) => `rgba(0, 0, 0, ${v * 0.85})`
-  );
-  const borderBottomColor = useTransform(
-    borderOpacity,
-    (v) => `rgba(0, 110, 255, ${v * 0.2})`
-  );
 
   return (
-    <motion.header className="fixed left-0 right-0 top-0 z-50 no-print">
+    <motion.header className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 no-print sm:px-5 sm:pt-4">
       <motion.div
-        style={{ backgroundColor, borderBottomColor }}
-        className="border-b border-transparent backdrop-blur-xl"
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        className="mx-auto max-w-6xl rounded-full border border-white/15 bg-[#0a0a0b]/80 shadow-[0_10px_38px_rgba(0,0,0,0.28)] backdrop-blur-xl"
       >
-        <Container size="xl">
-          <nav className="flex items-center justify-between py-3 sm:py-4 lg:py-5">
+        <Container size="full">
+          <nav className="flex items-center justify-between py-2.5 sm:py-3">
             <motion.a
               href="#home"
               className="text-base font-bold tracking-tight sm:text-lg 4k:text-xl"
@@ -41,7 +32,7 @@ export default function Navbar() {
               <span className="text-accent">.</span>
             </motion.a>
 
-            <ul className="hidden items-center gap-4 xl:gap-6 2xl:gap-8 lg:flex">
+            <ul className="hidden items-center gap-4 xl:flex xl:gap-6 2xl:gap-8">
               {navLinks.map((link, i) => (
                 <motion.li
                   key={link.href}
@@ -62,7 +53,7 @@ export default function Navbar() {
               ))}
             </ul>
 
-            <div className="hidden lg:block">
+            <div className="hidden xl:block">
               <Magnetic strength={0.2}>
                 <Button href="/resume" variant="primary" className="!px-4 !py-2 !text-xs xl:!px-5 xl:!text-sm 4k:!px-6 4k:!py-2.5 4k:!text-base">
                   View Resume
@@ -71,7 +62,7 @@ export default function Navbar() {
             </div>
 
             <motion.button
-              className="text-foreground lg:hidden"
+              className="text-foreground xl:hidden"
               onClick={() => setOpen(!open)}
               aria-label="Toggle menu"
               whileHover={reducedMotion ? undefined : { scale: 1.1 }}
@@ -86,7 +77,7 @@ export default function Navbar() {
       <motion.div
         initial={false}
         animate={open ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
-        className="overflow-hidden glass lg:hidden"
+        className={`mx-auto max-w-6xl overflow-hidden rounded-3xl glass xl:hidden ${open ? "mt-2" : ""}`}
       >
         <ul className="flex flex-col gap-1 px-4 py-4 sm:px-6 sm:py-6">
           {navLinks.map((link) => (
