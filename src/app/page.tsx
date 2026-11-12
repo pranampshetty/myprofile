@@ -1,6 +1,5 @@
 import About from "@/components/About";
 import Contact from "@/components/Contact";
-import CookieConsent from "@/components/CookieConsent";
 import ScrollProgress from "@/components/effects/ScrollProgress";
 import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
@@ -25,7 +24,6 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-      <CookieConsent />
     </>
   );
 }
